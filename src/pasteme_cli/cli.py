@@ -15,12 +15,36 @@ Why does this file exist, and why not put this in __main__?
   Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
 """
 import argparse
+import sys
 
-parser = argparse.ArgumentParser(description='Command description.')
-parser.add_argument('names', metavar='NAME', nargs=argparse.ZERO_OR_MORE,
-                    help="A name of something.")
+import requests
+
+from .constants import LANGUAGES, PASTEME_SERVICE_URL
+
+parser = argparse.ArgumentParser(description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful service.')
+parser.add_argument(
+	'-t', '--title',
+	metavar='',
+	default='Untitled',
+	type=str,
+	help='title/description of snippet',
+)
+parser.add_argument(
+	'-l', '--language',
+	metavar='',
+	default='plaintext',
+	type=str,
+	help='language of snippet/file',
+)
 
 
 def main(args=None):
-    args = parser.parse_args(args=args)
-    print(args.names)
+      
+	pass
+  
+	# TODO: writing the main functionality of POST
+	# and GET requests.
+
+	# TODO: also finding a better solution for reading
+	# from the standard input channel.
+	# sys.exit()
