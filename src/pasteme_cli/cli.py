@@ -16,6 +16,7 @@ Why does this file exist, and why not put this in __main__?
 """
 import argparse
 import sys
+import fileinput
 
 import requests
 
@@ -39,12 +40,13 @@ parser.add_argument(
 
 
 def main(args=None):
-      
-	pass
-  
+	args = parser.parse_args(args=args)
+
 	# TODO: writing the main functionality of POST
 	# and GET requests.
 
 	# TODO: also finding a better solution for reading
 	# from the standard input channel.
 	# sys.exit()
+
+	pass
