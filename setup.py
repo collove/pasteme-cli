@@ -65,11 +65,11 @@ setup(
         'Issue Tracker': 'https://github.com/collove/pasteme-cli/issues',
     },
     keywords=[
-        # eg: 'keyword1', 'keyword2', 'keyword3',
+        'pastebin', 'cli', 'tool', 'linux',
     ],
     python_requires='>=3.6',
     install_requires=[
-        # eg: 'aspectlib==1.1.1', 'six>=1.7',
+        'requests==2.28.1',
     ],
     extras_require={
         # eg:
