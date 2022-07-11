@@ -25,9 +25,11 @@ PASTEME_SERVICE_URL = 'https://pasteme.pythonanywhere.com'
 
 PASTEME_API_URL = 'http://localhost:8000/api/v1/paste/'
 
-CONNECTION_ISSUE_HINT = f'''Check your network connection. Make sure the PasteMe service ({PASTEME_SERVICE_URL}) is up and running.
-If the issue still presists, contact mailto:lnxpylnxpy@gmail.com for more information.'''
+CONNECTION_ISSUE_HINT = f'Check your network connection. Make sure the PasteMe service ({PASTEME_SERVICE_URL}) is up and running.'
 
 JSON_TEMPLATE = '''~~ {} ~~
 {}
 '''
+
+EPILOG_DESCRIPTION = '''Author -> Sadra Yahyapour (mailto:lnxpylnxpy@gmail.com)
+GitHub -> https://github.com/collove/pasteme-cli'''
