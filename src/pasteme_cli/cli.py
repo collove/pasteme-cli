@@ -22,13 +22,23 @@ import requests
 from requests.exceptions import ConnectionError
 
 from .constants import CONNECTION_ISSUE_HINT
+from .constants import EPILOG_DESCRIPTION
 from .constants import JSON_TEMPLATE
 from .constants import LANGUAGES
 from .constants import LANGUAGES_HINT
 from .constants import PASTEME_API_URL
 from .constants import PASTEME_SERVICE_URL
 
-parser = argparse.ArgumentParser(description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful service.')
+from .customs.argparse import line_range_type
+
+def hyphenated(string):
+	return 'hi'
+
+parser = argparse.ArgumentParser(
+    description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
+    epilog=EPILOG_DESCRIPTION,
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+)
 parser.add_argument(
 	'-t', '--title',
 	metavar='',
@@ -41,6 +51,7 @@ parser.add_argument(
 	metavar='',
 	default='plaintext',
 	type=str,
+	choices=LANGUAGES.keys(),
 	help=LANGUAGES_HINT,
 )
 parser.add_argument(
@@ -49,23 +60,32 @@ parser.add_argument(
     help="verbosity for post data and response",
 )
 parser.add_argument(
-	'body',
-	metavar='code',
-	type=str,
-	help='snippet body (code)',
+	'-r', '--range',
+	metavar='',
+	type=line_range_type,
+	help='paste only a range of the file (e.g --range 14-23)',
+)
+parser.add_argument(
+	'file',
+	type=open,
+	help='script file',
 )
 
 def main(args=None):
 	args = parser.parse_args(args=args)
- 
-	if language_is_valid(args.language):
-		context = {
-			'title': args.title,
-			'body': args.body,
-			'language': args.language,
-		}
-	else:
-		sys.exit(f'Language {args.language} is not valid! Check out "pasteme --help" for supported languages.')
+
+	with args.file as source_code:
+		code_lines = source_code.readlines()
+	
+	if args.range:
+		start, end = args.range
+		code_lines = code_lines[int(start)-1:int(end)]
+
+	context = {
+		'title': args.title,
+		'body': ''.join(code_lines),
+		'language': args.language,
+	}
 
 	try:
 		response = requests.post(
@@ -87,7 +107,8 @@ def main(args=None):
                 )
             )
 
-		sys.exit(f'PASTE --> {response["url"]}')
+		print(f'PASTE --> {response["url"]}')
+		sys.exit()
 	except ConnectionError:
 		sys.exit(CONNECTION_ISSUE_HINT)
 
