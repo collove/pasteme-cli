@@ -15,12 +15,18 @@ Why does this file exist, and why not put this in __main__?
   Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
 """
 import argparse
+import json
 import sys
-import fileinput
 
 import requests
+from requests.exceptions import ConnectionError
 
-from .constants import LANGUAGES, PASTEME_SERVICE_URL
+from .constants import CONNECTION_ISSUE_HINT
+from .constants import JSON_TEMPLATE
+from .constants import LANGUAGES
+from .constants import LANGUAGES_HINT
+from .constants import PASTEME_API_URL
+from .constants import PASTEME_SERVICE_URL
 
 parser = argparse.ArgumentParser(description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful service.')
 parser.add_argument(
@@ -35,18 +41,59 @@ parser.add_argument(
 	metavar='',
 	default='plaintext',
 	type=str,
-	help='language of snippet/file',
+	help=LANGUAGES_HINT,
 )
-
+parser.add_argument(
+    "-v", "--verbose",
+	action = "store_true",
+    help="verbosity for post data and response",
+)
+parser.add_argument(
+	'body',
+	metavar='code',
+	type=str,
+	help='snippet body (code)',
+)
 
 def main(args=None):
 	args = parser.parse_args(args=args)
+ 
+	if language_is_valid(args.language):
+		context = {
+			'title': args.title,
+			'body': args.body,
+			'language': args.language,
+		}
+	else:
+		sys.exit(f'Language {args.language} is not valid! Check out "pasteme --help" for supported languages.')
 
-	# TODO: writing the main functionality of POST
-	# and GET requests.
+	try:
+		response = requests.post(
+			url=PASTEME_API_URL,
+			data=context
+		).json()
+  
+		if args.verbose:
+			print(
+       			JSON_TEMPLATE.format(
+              		'REQUEST',
+              		json.dumps(context, indent=3)
+                )
+            )
+			print(
+       			JSON_TEMPLATE.format(
+              		'RESPONSE',
+              		json.dumps(response, indent=3)
+                )
+            )
 
-	# TODO: also finding a better solution for reading
-	# from the standard input channel.
-	# sys.exit()
+		sys.exit(f'PASTE --> {response["url"]}')
+	except ConnectionError:
+		sys.exit(CONNECTION_ISSUE_HINT)
 
-	pass
+	# TODO: finding a way reading the code/file from the user (maybe file only)
+	# like: pasteme -f file.py -L 120:132
+
+
+def language_is_valid(lang) -> bool:
+    return lang in LANGUAGES.keys()
