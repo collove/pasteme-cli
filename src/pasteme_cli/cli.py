@@ -38,7 +38,6 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
 	'-t', '--title',
 	metavar='',
-	default='Untitled',
 	type=str,
 	help='title/description of snippet',
 )
