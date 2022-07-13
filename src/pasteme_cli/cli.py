@@ -29,10 +29,6 @@ from .constants import LANGUAGES_HINT
 from .constants import PASTEME_API_URL
 from .constants import PASTEME_SERVICE_URL
 
-from .customs.argparse import line_range_type
-
-def hyphenated(string):
-	return 'hi'
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -60,10 +56,17 @@ parser.add_argument(
     help="verbosity for post data and response",
 )
 parser.add_argument(
-	'-r', '--range',
+	'-s', '--start',
 	metavar='',
-	type=line_range_type,
-	help='paste only a range of the file (e.g --range 14-23)',
+	type=int,
+	default=1,
+	help='select lines from (default: first line of the file)',
+)
+parser.add_argument(
+	'-e', '--end',
+	metavar='',
+	type=int,
+	help='select lines till (default: end of the file)',
 )
 parser.add_argument(
 	'file',
@@ -76,10 +79,10 @@ def main(args=None):
 
 	with args.file as source_code:
 		code_lines = source_code.readlines()
-	
-	if args.range:
-		start, end = args.range
-		code_lines = code_lines[int(start)-1:int(end)]
+
+	args.end = args.end if args.end else len(code_lines)
+
+	code_lines = code_lines[int(args.start)-1:int(args.end)]
 
 	context = {
 		'title': args.title,
@@ -111,10 +114,3 @@ def main(args=None):
 		sys.exit()
 	except ConnectionError:
 		sys.exit(CONNECTION_ISSUE_HINT)
-
-	# TODO: finding a way reading the code/file from the user (maybe file only)
-	# like: pasteme -f file.py -L 120:132
-
-
-def language_is_valid(lang) -> bool:
-    return lang in LANGUAGES.keys()
