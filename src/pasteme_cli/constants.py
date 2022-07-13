@@ -31,5 +31,6 @@ JSON_TEMPLATE = '''~~ {} ~~
 {}
 '''
 
-EPILOG_DESCRIPTION = '''Author -> Sadra Yahyapour (mailto:lnxpylnxpy@gmail.com)
+EPILOG_DESCRIPTION = '''Use --start (-s) and/or --end (-e) to select a range of lines from the source code to be pasted.
+Author -> Sadra Yahyapour (mailto:lnxpylnxpy@gmail.com)
 GitHub -> https://github.com/collove/pasteme-cli'''
