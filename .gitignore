@@ -72,3 +72,6 @@ docs/_build
 
 # Mypy Cache
 .mypy_cache/
+
+# Hand-made Ignores
+local_settings.py
