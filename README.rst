@@ -60,20 +60,19 @@ Usage
    PASTE -> <URL>
 
 To paste with the following attributes, run the command with the specified options and values.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: shell
 
-   title="Here is the Title"
-   paste_from=20
-   paste_till=35
-   language=C++
+   title      -> "Here is the Title"
+   line_start -> 20
+   line_end   -> 35
+   language   -> C++
 
 .. code:: shell
 
    $ pasteme --start 20 --end 35 --title "Here is the Title" --language cpp program.cpp
 
-Also visit the manual by typing ``$ pasteme --help`` and you have more
+You will have your 15 lines of code highlighted in C++ ready to share. Also visit the manual by typing ``$ pasteme --help`` and you have more
 hints on the options and arguments.
 
 License
