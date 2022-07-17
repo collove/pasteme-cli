@@ -20,12 +20,12 @@ def read(*names, **kwargs):
 
 setup(
     name='pasteme-cli',
-    version='0.0.2',
+    version='0.0.4',
     license='MIT',
     description='A CLI pastebin tool.',
     long_description='{}'.format(
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.md')),
-        # re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')),
+        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')),
     ),
     author='Sadra Yahyapour',
     author_email='lnxpylnxpy@gmail.com',
@@ -61,7 +61,7 @@ setup(
     ],
     project_urls={
         'Documentation': 'https://pasteme-cli.readthedocs.io/',
-        # 'Changelog': 'https://pasteme-cli.readthedocs.io/en/latest/changelog.html',
+        'Changelog': 'https://pasteme-cli.readthedocs.io/en/latest/changelog.html',
         'Issue Tracker': 'https://github.com/collove/pasteme-cli/issues',
     },
     keywords=[
