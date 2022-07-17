@@ -24,7 +24,7 @@ setup(
     license='MIT',
     description='A CLI pastebin tool.',
     long_description='{}'.format(
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.md')),
+        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')),
     ),
     author='Sadra Yahyapour',
