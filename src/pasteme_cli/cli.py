@@ -16,10 +16,8 @@ Why does this file exist, and why not put this in __main__?
 """
 import argparse
 import sys
-from email.quoprimime import body_check
 
 from requests.exceptions import ConnectionError
-from requests.exceptions import JSONDecodeError
 
 from pasteme_cli.sdk import Snippet
 
