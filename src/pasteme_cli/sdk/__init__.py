@@ -1,0 +1,1 @@
+from .pasteme import Snippet

@@ -15,20 +15,18 @@ Why does this file exist, and why not put this in __main__?
   Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
 """
 import argparse
-import json
 import sys
 
-import requests
 from requests.exceptions import ConnectionError
+
+from pasteme_cli.sdk import Snippet
 
 from .constants import CONNECTION_ISSUE_HINT
 from .constants import EPILOG_DESCRIPTION
-from .constants import JSON_TEMPLATE
 from .constants import LANGUAGES
 from .constants import LANGUAGES_HINT
 from .constants import PASTEME_API_URL
 from .constants import PASTEME_SERVICE_URL
-
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -82,33 +80,19 @@ def main(args=None):
 	args.end = args.end if args.end else len(code_lines)
 
 	code_lines = code_lines[int(args.start)-1:int(args.end)]
+ 
+	if not code_lines:
+		sys.exit(f'Make sure ({args.start}-{args.end}) range is available in your source code file.')
 
 	context = {
 		'title': args.title,
 		'body': ''.join(code_lines),
 		'language': args.language,
 	}
-
+ 
 	try:
-		response = requests.post(
-			url=PASTEME_API_URL,
-			data=context
-		).json()
-  
-		if args.verbose:
-			print(
-       			JSON_TEMPLATE.format(
-              		'REQUEST',
-              		json.dumps(context, indent=3)
-                )
-            )
-			print(
-       			JSON_TEMPLATE.format(
-              		'RESPONSE',
-              		json.dumps(response, indent=3)
-                )
-            )
-
+		snippet = Snippet(**context)
+		response = snippet.push(PASTEME_API_URL, args.verbose)
 		print(f'PASTE --> {response["url"]}')
 		sys.exit()
 	except ConnectionError:
