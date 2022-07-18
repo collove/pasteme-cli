@@ -20,7 +20,7 @@ def read(*names, **kwargs):
 
 setup(
     name='pasteme-cli',
-    version='0.0.5',
+    version='0.0.6',
     license='MIT',
     description='A CLI pastebin tool.',
     long_description='{}'.format(
