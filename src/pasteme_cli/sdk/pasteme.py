@@ -21,16 +21,17 @@ class Snippet:
         response = requests.post(
             url=url,
             data=self.snippet
-        ).json()
+        )
         
         if is_verbose:
+            response_json = response.json()
             sent_data = highlight(
                 json.dumps(self.snippet, indent=3),
                 lexers.JsonLexer(),
                 formatters.TerminalFormatter()
             )
             response_data = highlight(
-                json.dumps(response, indent=3),
+                json.dumps(response_json, indent=3),
                 lexers.JsonLexer(),
                 formatters.TerminalFormatter()
             )
