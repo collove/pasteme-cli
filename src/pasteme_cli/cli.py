@@ -92,8 +92,8 @@ def main(args=None):
  
 	try:
 		snippet = Snippet(**context)
-		response = snippet.push(PASTEME_API_URL, args.verbose)
-		print(f'PASTE --> {response["url"]}')
+		context = snippet.push(PASTEME_API_URL, args.verbose).json()
+		print(f'PASTE --> {context["url"]}')
 		sys.exit()
 	except ConnectionError:
 		sys.exit(CONNECTION_ISSUE_HINT)
