@@ -19,10 +19,25 @@ LANGUAGES = {
     'rb': 'Ruby Language'
 }
 
+THEMES = {
+    'default': 'Default Light',
+    'dark': 'Default Dark',
+    'atom-one-light': 'Atom One Light',
+    'atom-one-dark': 'Atom One Dark',
+    'github': 'Github Light',
+    'github-dark': 'Github Dark',
+}
+
 # Hint for using the available languages
 
 LANGUAGES_HINT = f'''snippet language (available languages:
-{", ".join([l for l in LANGUAGES.keys()])})
+{", ".join([_ for _ in LANGUAGES.keys()])})
+'''
+
+# Hint for using the available themes
+
+THEMES_HINT = f'''theme (available themes:
+{", ".join([_ for _ in THEMES.keys()])})
 '''
 
 # Actual service information

@@ -27,6 +27,8 @@ from .constants import LANGUAGES
 from .constants import LANGUAGES_HINT
 from .constants import PASTEME_API_URL
 from .constants import PASTEME_SERVICE_URL
+from .constants import THEMES
+from .constants import THEMES_HINT
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -46,6 +48,14 @@ parser.add_argument(
 	type=str,
 	choices=LANGUAGES.keys(),
 	help=LANGUAGES_HINT,
+)
+parser.add_argument(
+	'-T', '--theme',
+	metavar='',
+	default='default',
+	type=str,
+	choices=THEMES.keys(),
+	help=THEMES_HINT,
 )
 parser.add_argument(
     "-v", "--verbose",
@@ -88,6 +98,7 @@ def main(args=None):
 		'title': args.title,
 		'body': ''.join(code_lines),
 		'language': args.language,
+		'theme': args.theme,
 	}
  
 	try:
