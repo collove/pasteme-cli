@@ -12,6 +12,7 @@ class SnippetTestCase(unittest.TestCase):
             'title': 'Paste Title',
             'body': 'print("Hello")',
             'language': 'bash',
+            'theme': 'default',
         }
 
     # TODO: Using mocks
