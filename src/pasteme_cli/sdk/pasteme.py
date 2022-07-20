@@ -10,13 +10,14 @@ JSON_TEMPLATE = '''-> {}
 
 class Snippet:
 
-    def __init__(self, title, body, language) -> None:
+    def __init__(self, title, body, language, theme) -> None:
         self.snippet = {
             'title': title,
             'body': body,
             'language': language,
+            'theme': theme,
         }
-    
+
     def push(self, url, is_verbose=False) -> requests.Response:
         response = requests.post(
             url=url,
