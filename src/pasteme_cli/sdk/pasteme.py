@@ -10,12 +10,13 @@ JSON_TEMPLATE = '''-> {}
 
 
 class Snippet:
-    def __init__(self, title, body, language, theme) -> None:
+    def __init__(self, title, body, language, theme, expiry_time) -> None:
         self.snippet = {
             'title': title,
             'body': body,
             'language': language,
             'theme': theme,
+            'expires_in': expiry_time,
         }
 
     def push(self, url, is_verbose=False) -> requests.Response:

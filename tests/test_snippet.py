@@ -11,6 +11,7 @@ class SnippetTestCase(unittest.TestCase):
             'body': 'print("Hello")',
             'language': 'bash',
             'theme': 'default',
+            'expiry_time': '7',
         }
 
     # TODO: Using mocks

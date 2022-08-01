@@ -29,6 +29,8 @@ from .constants import PASTEME_API_URL
 from .constants import PASTEME_SERVICE_URL
 from .constants import THEMES
 from .constants import THEMES_HINT
+from .constants import EXPIRY_TIME
+from .constants import EXPIRY_TIME_HINT
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -50,6 +52,15 @@ parser.add_argument(
     type=str,
     choices=LANGUAGES.keys(),
     help=LANGUAGES_HINT,
+)
+parser.add_argument(
+    '-x',
+    '--expiry-time',
+    metavar='',
+    default='1d',
+    type=str,
+    choices=EXPIRY_TIME.keys(),
+    help=EXPIRY_TIME_HINT,
 )
 parser.add_argument(
     '-T',
@@ -101,11 +112,18 @@ def main(args=None):
     if not code_lines:
         sys.exit(f'Make sure ({args.start}-{args.end}) range is available in your source code file.')
 
+    expiry_days = {
+        "1d": 1,
+        "1w": 7,
+        "1m": 30,
+    }
+
     context = {
         'title': args.title,
         'body': ''.join(code_lines),
         'language': args.language,
         'theme': args.theme,
+        'expiry_time': expiry_days[args.expiry_time],
     }
 
     try:
