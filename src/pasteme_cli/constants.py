@@ -16,7 +16,7 @@ LANGUAGES = {
     'php': 'PHP Language',
     'plaintext': 'PlainText',
     'python': 'Python Language',
-    'rb': 'Ruby Language'
+    'rb': 'Ruby Language',
 }
 
 THEMES = {

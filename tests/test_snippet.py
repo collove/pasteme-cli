@@ -5,8 +5,6 @@ from pasteme_cli.constants import LANGUAGES, PASTEME_API_URL
 
 
 class SnippetTestCase(unittest.TestCase):
-    
-    
     def setUp(self) -> None:
         self.sample = {
             'title': 'Paste Title',
