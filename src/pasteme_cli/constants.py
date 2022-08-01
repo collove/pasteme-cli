@@ -1,5 +1,4 @@
 # Language choices
-
 LANGUAGES = {
     'bash': 'Command Language',
     'c': 'C Language',
@@ -16,7 +15,7 @@ LANGUAGES = {
     'php': 'PHP Language',
     'plaintext': 'PlainText',
     'python': 'Python Language',
-    'rb': 'Ruby Language'
+    'rb': 'Ruby Language',
 }
 
 THEMES = {
@@ -28,16 +27,25 @@ THEMES = {
     'github-dark': 'Github Dark',
 }
 
-# Hint for using the available languages
+EXPIRY_TIME = {
+    '1d': '1 Day',
+    '1w': '1 Week',
+    '1m': '1 Month',
+}
 
+# Hint for using the available languages
 LANGUAGES_HINT = f'''snippet language (available languages:
 {", ".join([_ for _ in LANGUAGES.keys()])})
 '''
 
 # Hint for using the available themes
-
 THEMES_HINT = f'''theme (available themes:
 {", ".join([_ for _ in THEMES.keys()])})
+'''
+
+# Hint for using the available expiry times
+EXPIRY_TIME_HINT = f'''expiry time (available expiry times:
+{", ".join([_ for _ in EXPIRY_TIME.keys()])})
 '''
 
 # Actual service information

@@ -5,14 +5,13 @@ from pasteme_cli.constants import LANGUAGES, PASTEME_API_URL
 
 
 class SnippetTestCase(unittest.TestCase):
-    
-    
     def setUp(self) -> None:
         self.sample = {
             'title': 'Paste Title',
             'body': 'print("Hello")',
             'language': 'bash',
             'theme': 'default',
+            'expiry_time': '7',
         }
 
     # TODO: Using mocks
