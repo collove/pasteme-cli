@@ -57,7 +57,7 @@ parser.add_argument(
     '-x',
     '--expiry-time',
     metavar='',
-    default='1d',
+    default='1w',
     type=str,
     choices=EXPIRY_TIME.keys(),
     help=EXPIRY_TIME_HINT,
