@@ -45,7 +45,7 @@ THEMES_HINT = f'''theme (available themes:
 
 # Hint for using the available expiry times
 EXPIRY_TIME_HINT = f'''expiry time (available expiry times:
-{", ".join([_ for _ in EXPIRY_TIME.keys()])})
+{", ".join([_ for _ in EXPIRY_TIME.keys()])}) (default: 1w/1week)
 '''
 
 # Actual service information
