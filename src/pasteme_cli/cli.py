@@ -21,16 +21,18 @@ from requests.exceptions import ConnectionError
 
 from pasteme_cli.sdk import Snippet
 
-from .constants import CONNECTION_ISSUE_HINT
-from .constants import EPILOG_DESCRIPTION
-from .constants import LANGUAGES
-from .constants import LANGUAGES_HINT
-from .constants import PASTEME_API_URL
-from .constants import PASTEME_SERVICE_URL
-from .constants import THEMES
-from .constants import THEMES_HINT
-from .constants import EXPIRY_TIME
-from .constants import EXPIRY_TIME_HINT
+from .constants import (
+    CONNECTION_ISSUE_HINT,
+    EPILOG_DESCRIPTION,
+    EXPIRY_TIME,
+    EXPIRY_TIME_HINT,
+    LANGUAGES,
+    LANGUAGES_HINT,
+    PASTEME_API_URL,
+    PASTEME_SERVICE_URL,
+    THEMES,
+    THEMES_HINT,
+)
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
