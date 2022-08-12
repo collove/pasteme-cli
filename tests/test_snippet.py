@@ -1,7 +1,7 @@
 import unittest
 
+from pasteme_cli.constants import PASTEME_API_URL
 from pasteme_cli.sdk.pasteme import Snippet
-from pasteme_cli.constants import LANGUAGES, PASTEME_API_URL
 
 
 class SnippetTestCase(unittest.TestCase):

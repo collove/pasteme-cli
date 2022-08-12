@@ -1,9 +1,7 @@
 import json
 
 import requests
-from pygments import formatters
-from pygments import highlight
-from pygments import lexers
+from pygments import formatters, highlight, lexers
 
 JSON_TEMPLATE = '''-> {}
 {}'''
