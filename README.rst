@@ -36,9 +36,9 @@ interface.
     :alt: Supported implementations
     :target: https://pypi.org/project/pasteme-cli
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/collove/pasteme-cli/v1.0.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/collove/pasteme-cli/v1.0.1.svg
     :alt: Commits since latest release
-    :target: https://github.com/collove/pasteme-cli/compare/v1.0.0...main
+    :target: https://github.com/collove/pasteme-cli/compare/v1.0.1...main
 
 Setup & Installation
 ~~~~~~~~~~~~~~~~~~~~
