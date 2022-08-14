@@ -63,11 +63,11 @@ To paste with the following attributes, run the command with the specified optio
 
 .. code:: sh
 
-   title        ->  "Here is the Title" (default: Untitled)
-   line_start   ->  20 (default: First line)
-   line_end     ->  35 (defalut: Last line)
-   language     ->  C++ (default: PlainText)
-   expirers at  ->  One month (default: One week)
+   title       ->  "Here is the Title" (default: Untitled)
+   line_start  ->  20 (default: First line)
+   line_end    ->  35 (defalut: Last line)
+   language    ->  C++ (default: PlainText)
+   expires at  ->  One month (default: One week)
 
 .. code:: sh
 
