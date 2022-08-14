@@ -36,9 +36,9 @@ interface.
     :alt: Supported implementations
     :target: https://pypi.org/project/pasteme-cli
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/collove/pasteme-cli/v1.0.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/collove/pasteme-cli/v1.0.2.svg
     :alt: Commits since latest release
-    :target: https://github.com/collove/pasteme-cli/compare/v1.0.0...main
+    :target: https://github.com/collove/pasteme-cli/compare/v1.0.2...main
 
 Setup & Installation
 ~~~~~~~~~~~~~~~~~~~~
@@ -47,30 +47,31 @@ Since PasteMe provides API endpoints, you can install the following
 Python package and paste your source codes and code snippets using your
 CLIs or Terminals.
 
-.. code:: shell
+.. code:: sh
 
    $ pip install pasteme-cli
 
 Usage
 ~~~~~
 
-.. code:: shell
+.. code:: sh
 
    $ pasteme [OPTIONS] file.py
    PASTE -> <URL>
 
 To paste with the following attributes, run the command with the specified options and values.
 
-.. code:: shell
+.. code:: sh
 
-   title      -> "Here is the Title"
-   line_start -> 20
-   line_end   -> 35
-   language   -> C++
+   title        ->  "Here is the Title" (default: Untitled)
+   line_start   ->  20 (default: First line)
+   line_end     ->  35 (defalut: Last line)
+   language     ->  C++ (default: PlainText)
+   expirers at  ->  One month (default: One week)
 
-.. code:: shell
+.. code:: sh
 
-   $ pasteme --start 20 --end 35 --title "Here is the Title" --language cpp program.cpp
+   $ pasteme --start 20 --end 35 --title "Here is the Title" --language cpp -x 1m program.cpp
 
 You will have your 15 lines of code highlighted in C++ ready to share. Also visit the manual by typing ``$ pasteme --help`` and you have more
 hints on the options and arguments.
