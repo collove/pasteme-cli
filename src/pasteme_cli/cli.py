@@ -16,7 +16,7 @@ Why does this file exist, and why not put this in __main__?
 """
 import argparse
 import sys
-
+from random import choice
 from requests.exceptions import ConnectionError
 
 from pasteme_cli.sdk import Snippet
@@ -33,7 +33,7 @@ from .constants import (
     THEMES,
     THEMES_HINT,
 )
-
+from .logos import logos
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
     epilog=EPILOG_DESCRIPTION,
@@ -131,7 +131,7 @@ def main(args=None):
     try:
         snippet = Snippet(**context)
         context = snippet.push(PASTEME_API_URL, args.verbose).json()
-        print(f'PASTE --> {context["url"]}')
+        print(choice(logos).format(context["url"]))
         sys.exit()
     except ConnectionError:
         sys.exit(CONNECTION_ISSUE_HINT)
