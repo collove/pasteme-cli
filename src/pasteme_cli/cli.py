@@ -6,7 +6,7 @@ Why does this file exist, and why not put this in __main__?
   You might be tempted to import things from __main__ later, but that will cause
   problems: the code will get executed twice:
 
-  - When you run `python -mpasteme_cli` python will execute
+  - When you run `python -m pasteme_cli` python will execute
     ``__main__.py`` as a script. That means there won't be any
     ``pasteme_cli.__main__`` in ``sys.modules``.
   - When you import __main__ it will get executed again (as a module) because
@@ -16,10 +16,9 @@ Why does this file exist, and why not put this in __main__?
 """
 import argparse
 import sys
+from typing import Optional, Sequence
 
 from requests.exceptions import ConnectionError
-
-from pasteme_cli.sdk import Snippet
 
 from .constants import (
     CONNECTION_ISSUE_HINT,
@@ -28,11 +27,11 @@ from .constants import (
     EXPIRY_TIME_HINT,
     LANGUAGES,
     LANGUAGES_HINT,
-    PASTEME_API_URL,
     PASTEME_SERVICE_URL,
     THEMES,
     THEMES_HINT,
 )
+from .sdk import PasteMe
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -101,13 +100,13 @@ parser.add_argument(
 )
 
 
-def main(args=None):
+def main(args: Optional[Sequence[str]] = None) -> None:
     args = parser.parse_args(args=args)
 
     with args.file as source_code:
         code_lines = source_code.readlines()
 
-    args.end = args.end if args.end else len(code_lines)
+    args.end = args.end or len(code_lines)
 
     code_lines = code_lines[int(args.start) - 1 : int(args.end)]
 
@@ -120,18 +119,16 @@ def main(args=None):
         "1m": 30,
     }
 
-    context = {
-        'title': args.title,
-        'body': ''.join(code_lines),
-        'language': args.language,
-        'theme': args.theme,
-        'expiry_time': expiry_days[args.expiry_time],
-    }
-
     try:
-        snippet = Snippet(**context)
-        context = snippet.push(PASTEME_API_URL, args.verbose).json()
-        print(f'PASTE --> {context["url"]}')
+        snippet = PasteMe(args.verbose)
+        resp = snippet.create(
+            title=args.title,
+            body=''.join(code_lines),
+            language=args.language,
+            theme=args.theme,
+            expiry_time=expiry_days[args.expiry_time],
+        )
+        print(f'PASTE --> {resp.url}')
         sys.exit()
     except ConnectionError:
         sys.exit(CONNECTION_ISSUE_HINT)
