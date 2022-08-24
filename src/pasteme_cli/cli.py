@@ -34,7 +34,7 @@ from .constants import (
 from .sdk import PasteMe
 
 parser = argparse.ArgumentParser(
-    description=('A CLI pastebin tool interacting with PasteMe ' f'({PASTEME_SERVICE_URL}) RESTful APIs.'),
+    description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
     epilog=EPILOG_DESCRIPTION,
     formatter_class=argparse.RawDescriptionHelpFormatter,
 )
