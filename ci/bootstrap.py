@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function, unicode_literals
 
 import os
 import subprocess
@@ -25,7 +23,7 @@ def exec_in_env():
     if not exists(env_path):
         import subprocess
 
-        print("Making bootstrap env in: {0} ...".format(env_path))
+        print(f"Making bootstrap env in: {env_path} ...")
         try:
             check_call([sys.executable, "-m", "venv", env_path])
         except subprocess.CalledProcessError:
@@ -39,7 +37,7 @@ def exec_in_env():
     if not os.path.exists(python_executable):
         python_executable += '.exe'
 
-    print("Re-executing with: {0}".format(python_executable))
+    print(f"Re-executing with: {python_executable}")
     print("+ exec", python_executable, __file__, "--no-env")
     os.execv(python_executable, [python_executable, __file__, "--no-env"])
 
@@ -47,7 +45,7 @@ def exec_in_env():
 def main():
     import jinja2
 
-    print("Project path: {0}".format(base_path))
+    print(f"Project path: {base_path}")
 
     jinja = jinja2.Environment(
         loader=jinja2.FileSystemLoader(templates_path),
@@ -63,7 +61,7 @@ def main():
         # This uses sys.executable the same way that the call in
         # cookiecutter-pylibrary/hooks/post_gen_project.py
         # invokes this bootstrap.py itself.
-        for line in subprocess.check_output([sys.executable, '-m', 'tox', '--listenvs'], universal_newlines=True).splitlines()
+        for line in subprocess.check_output([sys.executable, '-m', 'tox', '--listenvs'], text=True).splitlines()
     ]
     tox_environments = [line for line in tox_environments if line.startswith('py')]
 
@@ -72,7 +70,7 @@ def main():
             relative = relpath(root, templates_path)
             with open(join(base_path, relative, name), "w") as fh:
                 fh.write(jinja.get_template(join(relative, name)).render(tox_environments=tox_environments))
-            print("Wrote {}".format(name))
+            print(f"Wrote {name}")
     print("DONE.")
 
 
@@ -83,5 +81,5 @@ if __name__ == "__main__":
     elif not args:
         exec_in_env()
     else:
-        print("Unexpected arguments {0}".format(args), file=sys.stderr)
+        print(f"Unexpected arguments {args}", file=sys.stderr)
         sys.exit(1)
