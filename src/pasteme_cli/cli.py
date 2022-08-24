@@ -126,7 +126,7 @@ def main(args: Optional[Sequence[str]] = None) -> None:
             body=''.join(code_lines),
             language=args.language,
             theme=args.theme,
-            expiry_time=expiry_days[args.expiry_time],
+            expires_in=expiry_days[args.expiry_time],
         )
         print(f'PASTE --> {resp.url}')
         sys.exit()
