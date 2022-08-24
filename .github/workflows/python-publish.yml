@@ -13,8 +13,8 @@ on:
     types: [published]
   workflow_dispatch:
 
-permissions:
-  contents: read
+# permissions:
+#  contents: read
 
 jobs:
   deploy:
