@@ -17,7 +17,7 @@ project = 'pasteme-cli'
 year = '2022'
 author = 'Sadra Yahyapour'
 copyright = f'{year}, {author}'
-version = release = '1.0.2'
+version = release = '1.0.3'
 
 pygments_style = 'trac'
 templates_path = ['.']
