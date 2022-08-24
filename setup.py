@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-# -*- encoding: utf-8 -*-
 
-import io
 import re
 from glob import glob
 from os.path import basename, dirname, join, splitext
@@ -10,7 +8,7 @@ from setuptools import find_packages, setup
 
 
 def read(*names, **kwargs):
-    with io.open(join(dirname(__file__), *names), encoding=kwargs.get('encoding', 'utf8')) as fh:
+    with open(join(dirname(__file__), *names), encoding=kwargs.get('encoding', 'utf8')) as fh:
         return fh.read()
 
 
@@ -19,7 +17,7 @@ setup(
     version='1.0.2',
     license='MIT',
     description='A CLI pastebin tool.',
-    long_description='{0}\n\n{1}'.format(
+    long_description='{}\n\n{}'.format(
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')),
     ),
@@ -42,7 +40,6 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
@@ -66,7 +63,7 @@ setup(
         'tool',
         'linux',
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.7',
     install_requires=[
         'requests==2.28.1',
         'Pygments==2.12.0',

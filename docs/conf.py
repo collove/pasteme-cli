@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 
 extensions = [
@@ -19,7 +16,7 @@ master_doc = 'index'
 project = 'pasteme-cli'
 year = '2022'
 author = 'Sadra Yahyapour'
-copyright = '{0}, {1}'.format(year, author)
+copyright = f'{year}, {author}'
 version = release = '1.0.2'
 
 pygments_style = 'trac'
@@ -40,7 +37,7 @@ html_split_index = False
 html_sidebars = {
     '**': ['searchbox.html', 'globaltoc.html', 'sourcelink.html'],
 }
-html_short_title = '%s-%s' % (project, version)
+html_short_title = f'{project}-{version}'
 
 napoleon_use_ivar = True
 napoleon_use_rtype = False
