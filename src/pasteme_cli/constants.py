@@ -35,24 +35,22 @@ EXPIRY_TIME = {
 
 # Hint for using the available languages
 LANGUAGES_HINT = f'''snippet language (available languages:
-{", ".join([_ for _ in LANGUAGES.keys()])})
+{", ".join(LANGUAGES.keys())})
 '''
 
 # Hint for using the available themes
 THEMES_HINT = f'''theme (available themes:
-{", ".join([_ for _ in THEMES.keys()])})
+{", ".join(THEMES.keys())})
 '''
 
 # Hint for using the available expiry times
 EXPIRY_TIME_HINT = f'''expiry time (available expiry times:
-{", ".join([_ for _ in EXPIRY_TIME.keys()])}) (default: 1w/1week)
+{", ".join(EXPIRY_TIME.keys())}) (default: 1w/1week)
 '''
 
 # Actual service information
 
 PASTEME_SERVICE_URL = 'https://pasteme.pythonanywhere.com'
-
-PASTEME_API_URL = 'https://pasteme.pythonanywhere.com/api/v1/paste/'
 
 # Traceback messages
 

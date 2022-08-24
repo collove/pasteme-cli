@@ -1,3 +1,5 @@
-from .pasteme import Snippet
+from .pasteme import PasteMe
 
-__all__ = ("Snippet",)
+__all__ = [
+    "PasteMe",
+]

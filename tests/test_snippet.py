@@ -1,7 +1,7 @@
 import unittest
 
-from pasteme_cli.constants import PASTEME_API_URL
-from pasteme_cli.sdk.pasteme import Snippet
+from src.pasteme_cli.constants import PASTEME_SERVICE_URL
+from src.pasteme_cli.sdk.pasteme import PasteMe
 
 
 class SnippetTestCase(unittest.TestCase):
@@ -16,9 +16,8 @@ class SnippetTestCase(unittest.TestCase):
 
     # TODO: Using mocks
     def test_push_snippet(self):
-        response = Snippet(**self.sample).push(PASTEME_API_URL)
-        self.assertEqual(response.status_code, 201)
-        self.assertIn('url', response.json().keys())
+        resp = PasteMe().create(**self.sample)
+        self.assertIn(PASTEME_SERVICE_URL, resp.url)
 
 
 if __name__ == '__main__':
