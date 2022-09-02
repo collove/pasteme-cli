@@ -32,6 +32,7 @@ from .constants import (
     THEMES_HINT,
 )
 from .sdk import PasteMe
+from .logos import logo
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -128,7 +129,7 @@ def main(args: Optional[Sequence[str]] = None) -> None:
             theme=args.theme,
             expires_in=expiry_days[args.expiry_time],
         )
-        print(f'PASTE --> {resp.url}')
+        print(logo.format({resp.url}))
         sys.exit()
     except ConnectionError:
         sys.exit(CONNECTION_ISSUE_HINT)
