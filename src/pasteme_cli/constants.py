@@ -18,6 +18,26 @@ LANGUAGES = {
     'rb': 'Ruby Language',
 }
 
+LANGUAGES_EXTENSIONS = {
+    '.bash': 'bash',
+    '.c': 'c',
+    '.cpp': 'cpp',
+    '.csharp': 'c#',
+    '.css': 'css',
+    '.go': 'go',
+    '.html': 'html',
+    '.java': 'java',
+    '.js': 'javascript',
+    '.json': 'json',
+    '.lua': 'lua',
+    '.md': 'markdown',
+    '.php': 'php',
+    '.txt': 'plaintext',
+    '':'plaintext',
+    '.py': 'python',
+    '.rb': 'ruby',
+}
+
 THEMES = {
     'default': 'Default Light',
     'dark': 'Default Dark',
