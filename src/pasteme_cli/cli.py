@@ -17,6 +17,7 @@ Why does this file exist, and why not put this in __main__?
 import argparse
 import sys
 from typing import Optional, Sequence
+from random import choice as random
 
 from requests.exceptions import ConnectionError
 
@@ -32,7 +33,7 @@ from .constants import (
     THEMES_HINT,
 )
 from .sdk import PasteMe
-from .logos import logo
+from .shapes import CHARACTERS
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -129,7 +130,7 @@ def main(args: Optional[Sequence[str]] = None) -> None:
             theme=args.theme,
             expires_in=expiry_days[args.expiry_time],
         )
-        print(logo.format({resp.url}))
+        print(random(CHARACTERS).format(resp.url))
         sys.exit()
     except ConnectionError:
         sys.exit(CONNECTION_ISSUE_HINT)
