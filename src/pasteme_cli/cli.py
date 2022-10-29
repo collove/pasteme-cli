@@ -16,6 +16,7 @@ Why does this file exist, and why not put this in __main__?
 """
 import argparse
 import sys
+import os
 from typing import Optional, Sequence
 
 from requests.exceptions import ConnectionError
@@ -27,6 +28,7 @@ from .constants import (
     EXPIRY_TIME_HINT,
     LANGUAGES,
     LANGUAGES_HINT,
+    LANGUAGES_EXTENSIONS,
     PASTEME_SERVICE_URL,
     THEMES,
     THEMES_HINT,
@@ -50,7 +52,6 @@ parser.add_argument(
     '-l',
     '--language',
     metavar='',
-    default='plaintext',
     type=str,
     choices=LANGUAGES.keys(),
     help=LANGUAGES_HINT,
@@ -100,10 +101,13 @@ parser.add_argument(
     help='script file',
 )
 
+def detect_language(file):
+    file_extension = os.path.splitext(file)[1]
+    return LANGUAGES_EXTENSIONS.get(file_extension,'plaintext')
 
 def main(args: Optional[Sequence[str]] = None) -> None:
     args = parser.parse_args(args=args)
-
+    language = detect_language(args.file.name) if not args.language else args.language
     with args.file as source_code:
         code_lines = source_code.readlines()
 
@@ -125,7 +129,7 @@ def main(args: Optional[Sequence[str]] = None) -> None:
         resp = snippet.create(
             title=args.title,
             body=''.join(code_lines),
-            language=args.language,
+            language=language,
             theme=args.theme,
             expires_in=expiry_days[args.expiry_time],
         )
