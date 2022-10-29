@@ -18,6 +18,7 @@ import argparse
 import sys
 import os
 from typing import Optional, Sequence
+from random import choice as random
 
 from requests.exceptions import ConnectionError
 
@@ -34,6 +35,7 @@ from .constants import (
     THEMES_HINT,
 )
 from .sdk import PasteMe
+from .shapes import CHARACTERS
 
 parser = argparse.ArgumentParser(
     description=f'A CLI pastebin tool interacting with PasteMe ({PASTEME_SERVICE_URL}) RESTful APIs.',
@@ -132,7 +134,7 @@ def main(args: Optional[Sequence[str]] = None) -> None:
             theme=args.theme,
             expires_in=expiry_days[args.expiry_time],
         )
-        print(f'PASTE --> {resp.url}')
+        print(random(CHARACTERS).format(resp.url))
         sys.exit()
     except ConnectionError:
         sys.exit(CONNECTION_ISSUE_HINT)
