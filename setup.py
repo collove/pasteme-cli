@@ -66,7 +66,7 @@ setup(
     python_requires='>=3.7',
     install_requires=[
         'requests==2.28.1',
-        'Pygments==2.12.0',
+        'Pygments==2.15.0',
     ],
     extras_require={
         # eg:
